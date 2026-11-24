@@ -1,0 +1,434 @@
+@import 'tailwindcss';
+
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+@theme {
+  --color-ivory: #fdfbf7;
+  --color-cream: #f8f0e3;
+  --color-parchment: #f2e6d2;
+  --color-maroon: #6b1d2f;
+  --color-maroon-deep: #4e1222;
+  --color-maroon-ink: #3a0f1b;
+  --color-gold: #d4af37;
+  --color-gold-light: #ebd58c;
+  --color-gold-pale: #f6ebc8;
+  --color-gold-deep: #8f6b17; /* AA-contrast gold for text on ivory */
+  --color-blush: #f9c6d0;
+  --color-blush-soft: #fde8ed;
+  --color-teal: #0f5c6e;
+  --color-teal-light: #1e8299;
+
+  --font-display: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-script: 'Great Vibes', 'Segoe Script', cursive;
+  --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', 'Kohinoor Devanagari', serif;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--color-ivory);
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    color: var(--color-maroon-ink);
+    font-family: var(--font-serif);
+    background-color: var(--color-ivory);
+    /* faint hand-made paper grain */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .2 0 0 0 0 .12 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+  html.scroll-locked,
+  html.scroll-locked body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-maroon-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+/* ── Components ────────────────────────────────────────────────────────────── */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .text-gold-shimmer {
+    background-image: linear-gradient(
+      100deg,
+      #6f4e0e 0%,
+      #a57d1e 20%,
+      #d9b85a 36%,
+      #fff1bf 47%,
+      #d4af37 57%,
+      #a57d1e 76%,
+      #6f4e0e 100%
+    );
+    background-size: 260% 100%;
+    background-position: 100% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding: 0.06em 0.14em;
+    animation: shimmer-sweep 9s ease-in-out infinite;
+  }
+  .text-gold-static {
+    background-image: linear-gradient(180deg, #f3df9a, #d4af37 55%, #b38a22);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 46px;
+    padding: 0.7rem 1.35rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .btn:active {
+    transform: translateY(1px) scale(0.985);
+  }
+  .btn-primary {
+    color: #fbefd0;
+    background: linear-gradient(180deg, #82283c, #5d1627);
+    box-shadow:
+      0 10px 22px -14px rgba(74, 16, 32, 0.9),
+      inset 0 0 0 1px rgba(212, 175, 55, 0.6);
+  }
+  .btn-primary:hover {
+    box-shadow:
+      0 14px 26px -14px rgba(74, 16, 32, 0.95),
+      inset 0 0 0 1px rgba(235, 213, 140, 0.95);
+  }
+  .btn-gold {
+    color: var(--color-maroon-ink);
+    background: linear-gradient(180deg, #f5e3a4, #d4af37 58%, #b58d24);
+    box-shadow:
+      0 10px 22px -14px rgba(143, 107, 23, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  .btn-gold:hover {
+    filter: brightness(1.05);
+  }
+  .btn-outline {
+    color: var(--color-maroon);
+    background: rgba(253, 251, 247, 0.75);
+    border: 1px solid rgba(143, 107, 23, 0.5);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-gold-deep);
+    background: #fff;
+  }
+  .btn-ghost-light {
+    color: var(--color-gold-pale);
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .btn-ghost-light:hover {
+    background: rgba(212, 175, 55, 0.14);
+    border-color: var(--color-gold-light);
+  }
+
+  /* ivory card with a fine inner gold rule */
+  .card-ornate {
+    position: relative;
+    border-radius: 1.4rem;
+    background: linear-gradient(180deg, #fffdf9 0%, #fbf3e6 100%);
+    box-shadow:
+      0 30px 60px -36px rgba(58, 15, 27, 0.55),
+      0 0 0 1px rgba(212, 175, 55, 0.5);
+  }
+  .card-ornate::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-radius: calc(1.4rem - 6px);
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    pointer-events: none;
+  }
+
+  /* gold "jaali" lattice used on maroon sections */
+  .bg-jaali {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='.13' stroke-width='1'%3E%3Cpath d='M28 0 56 28 28 56 0 28z'/%3E%3Cpath d='M28 20c3 4 3 12 0 16-3-4-3-12 0-16zM20 28c4-3 12-3 16 0-4 3-12 3-16 0z'/%3E%3C/g%3E%3Cg fill='%23D4AF37' fill-opacity='.22'%3E%3Ccircle cx='28' cy='28' r='1.6'/%3E%3Ccircle cx='0' cy='0' r='1.6'/%3E%3Ccircle cx='56' cy='0' r='1.6'/%3E%3Ccircle cx='0' cy='56' r='1.6'/%3E%3Ccircle cx='56' cy='56' r='1.6'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .field {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(143, 107, 23, 0.35);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--color-maroon-ink);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .field::placeholder {
+    color: rgba(58, 15, 27, 0.4);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+  }
+}
+
+/* ── Ambient loops (CSS so one toggle can pause them all) ──────────────────── */
+@keyframes shimmer-sweep {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes halo-pulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes feather-sway {
+  0%,
+  100% {
+    transform: rotate(-2.4deg);
+  }
+  50% {
+    transform: rotate(2.8deg);
+  }
+}
+@keyframes train-fan {
+  0%,
+  100% {
+    transform: rotate(-1.4deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+@keyframes head-bob {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}
+@keyframes glint {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.55);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+@keyframes hand-hint {
+  0%,
+  100% {
+    transform: translate(-46px, 14px) rotate(-10deg);
+  }
+  25% {
+    transform: translate(6px, -10px) rotate(2deg);
+  }
+  50% {
+    transform: translate(46px, 12px) rotate(-6deg);
+  }
+  75% {
+    transform: translate(-4px, -12px) rotate(4deg);
+  }
+}
+@keyframes pendant-sway {
+  0%,
+  100% {
+    transform: rotate(-3.5deg);
+  }
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+@keyframes bounce-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+.loop-halo {
+  animation: halo-pulse 3.4s ease-in-out infinite;
+}
+.loop-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+.loop-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+.loop-spin-slow {
+  animation: spin 140s linear infinite;
+}
+.loop-spin-rev {
+  animation: spin 220s linear infinite reverse;
+}
+.loop-twinkle {
+  animation: twinkle 2.8s ease-in-out infinite;
+}
+.loop-hand {
+  animation: hand-hint 3.4s ease-in-out infinite;
+}
+.loop-bounce {
+  animation: bounce-down 1.9s ease-in-out infinite;
+}
+.loop-sway {
+  transform-origin: 50% 0;
+  animation: pendant-sway 3.8s ease-in-out infinite;
+}
+/* SVG parts rotate around their local origin (0,0) — each is drawn from its pivot */
+.loop-feather {
+  transform-origin: 0 0;
+  animation: feather-sway 4.8s ease-in-out infinite;
+}
+.loop-train {
+  transform-origin: 0 0;
+  animation: train-fan 6.5s ease-in-out infinite;
+}
+.loop-head {
+  transform-origin: 0 0;
+  animation: head-bob 7s ease-in-out infinite;
+}
+.loop-breathe {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: breathe 4.2s ease-in-out infinite;
+}
+.loop-glint {
+  animation: glint 3.6s ease-in-out infinite;
+}
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.loop-eq {
+  animation: eq 0.9s ease-in-out infinite;
+}
+
+/* One switch pauses every ambient loop */
+html[data-motion='paused'] [class*='loop-'],
+html[data-motion='paused'] .text-gold-shimmer {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
