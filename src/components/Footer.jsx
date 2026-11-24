@@ -80,7 +80,7 @@ export default function Footer() {
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 1.4, ease: EASE_OUT }}
         className="pointer-events-none -mt-6 w-[60vw] max-w-[260px] -translate-x-[4%] pb-[env(safe-area-inset-bottom)] md:absolute md:bottom-0 md:left-0 md:mt-0 md:w-[22vw] md:max-w-[300px] md:translate-x-0 lg:left-4"
       >

@@ -45,7 +45,7 @@ function EventCard({ ev, index, first }) {
     <motion.li
       initial={{ opacity: 0, y: 34 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.85, ease: EASE_OUT }}
       className={`relative grid grid-cols-[2.75rem_1fr] gap-3 sm:grid-cols-[3.5rem_1fr] sm:gap-4 lg:grid-cols-[1fr_5rem_1fr] lg:gap-8 ${first ? '' : 'lg:-mt-40'}`}
     >
@@ -110,7 +110,7 @@ export default function Events() {
           <motion.div
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 1.4, ease: EASE_OUT }}
             className="order-1 w-[44vw] max-w-[230px] md:w-60 md:max-w-none lg:w-72"
           >
@@ -127,7 +127,7 @@ export default function Events() {
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 1.4, ease: EASE_OUT }}
             className="order-2 w-[44vw] max-w-[230px] md:order-3 md:w-60 md:max-w-none lg:w-72"
           >

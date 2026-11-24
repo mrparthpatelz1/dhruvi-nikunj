@@ -5,7 +5,6 @@ import EnvelopeIntro from './components/Envelope';
 import Events from './components/Events';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
-import Rsvp from './components/Rsvp';
 import SakuraCanvas from './components/SakuraCanvas';
 import ScratchReveal from './components/ScratchReveal';
 import Venue from './components/Venue';
@@ -38,7 +37,6 @@ function Invitation() {
             <ScratchReveal />
             <Events />
             <Venue />
-            <Rsvp />
           </main>
           <Footer />
           <AmbientControls />

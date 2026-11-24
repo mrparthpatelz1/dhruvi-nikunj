@@ -23,9 +23,9 @@ export const stagger = (staggerChildren = 0.12, delayChildren = 0) => ({
   show: { transition: { staggerChildren, delayChildren } },
 });
 
-/** Spread onto a motion element: reveal once when 20% of it is visible. */
+/** Spread onto a motion element: reveal on scroll when 20% of it is visible, reset on exit. */
 export const revealOnce = {
   initial: 'hidden',
   whileInView: 'show',
-  viewport: { once: true, amount: 0.2 },
+  viewport: { once: false, amount: 0.2 },
 };
